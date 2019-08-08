@@ -34,6 +34,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		.and().authorizeRequests()
 		.antMatchers("/users/**").access("hasRole('ADMIN')")
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 		;
 	}
 
