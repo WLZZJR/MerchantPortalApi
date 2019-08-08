@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 
 public class ApplyClientDetailService implements ClientDetailsService {
 
+
+
     @Autowired
     private DataSource dataSource;
 

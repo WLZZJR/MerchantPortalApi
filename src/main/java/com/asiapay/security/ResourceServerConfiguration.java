@@ -1,5 +1,7 @@
 package com.asiapay.security;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -17,6 +19,7 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
 	private static final String RESOURCE_ID = "*";
+	private static final Log logger = LogFactory.getLog(ResourceServerConfiguration.class);
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
@@ -30,7 +33,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		.requestMatchers().antMatchers("/users/**")
 		.and().authorizeRequests()
 		.antMatchers("/users/**").access("hasRole('ADMIN')")
-		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
+		;
 	}
 
 }

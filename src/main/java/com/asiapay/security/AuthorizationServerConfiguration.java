@@ -1,8 +1,9 @@
 package com.asiapay.security;
 
-import com.asiapay.configuration.AppleUserDetailService;
 import com.asiapay.configuration.ApplyClientDetailService;
 import com.asiapay.configuration.MyJdbcTokenStore;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,6 +30,8 @@ import javax.annotation.Resource;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+
+	private static final Log logger = LogFactory.getLog(AuthorizationServerConfiguration.class);
 
 	private static final String DEMO_RESOURCE_ID = "*";
 
@@ -75,17 +78,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 
 		// 配置客户端, 用于client认证
-		//clients.withClientDetails(getClientDetails());
+		clients.withClientDetails(getClientDetails());
 
 		//添加客户端信息
-		clients.inMemory()
-	        .withClient("my-trusted-client")
+		/*clients.inMemory()
+	        .withClient("AsiaPay")
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
             .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
             .scopes("read", "write", "trust")
             .secret("secret")
             .accessTokenValiditySeconds(60*60).//Access token is only valid for 2 minutes.
-            refreshTokenValiditySeconds(600);//Refresh token is only valid for 10 minutes.
+            refreshTokenValiditySeconds(600);//Refresh token is only valid for 10 minutes.*/
 
 	}
 
